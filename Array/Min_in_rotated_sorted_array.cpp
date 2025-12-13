@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-using namespace std;ss
+using namespace std;
 class Solution {
 public:
     int findMin(vector<int>& nums) {
