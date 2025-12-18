@@ -48,8 +48,9 @@ class Solution
 };
 int main()
 {
-    vector<int>arr={22,27,1,8,17};
-    int target=23;
+    vector<int>arr={2, 2, 2, 4 ,5, 6, 8, 8, 9, 10, 10, 13, 13, 16, 17, 18, 20};
+
+    int target=16;
     Solution s;
     vector<int>ans=s.findsum(arr,target);
     if(ans.size()==0) cout<<"Pair not exits";
