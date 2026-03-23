@@ -31,4 +31,4 @@ class Solution
         if(count>n/2)return ele;
         else return -1;
     }
-}
+};
