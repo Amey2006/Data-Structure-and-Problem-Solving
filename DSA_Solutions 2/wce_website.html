@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Walchand College of Engineering, Sangli</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --crimson: #b01c24;
+    --crimson-dark: #8a1219;
+    --crimson-light: #d93a3a;
+    --gold: #c9922a;
+    --gold-light: #f0b94a;
+    --cream: #fdf8f2;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #4a4a6a;
+    --border: #e0d8d0;
+    --bg-light: #f7f2ec;
+    --shadow: 0 4px 24px rgba(176,28,36,0.10);
+    --shadow-lg: 0 12px 48px rgba(176,28,36,0.18);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--cream); color: var(--text); }
+
+  /* ── TOP UTILITY BAR ── */
+  .utility-bar {
+    background: var(--crimson-dark);
+    color: #fff;
+    padding: 6px 0;
+    font-size: 13px;
+  }
+  .utility-inner {
+    max-width: 1300px; margin: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; gap: 16px; flex-wrap: wrap;
+  }
+  .utility-left { display: flex; gap: 20px; align-items: center; }
+  .utility-right { display: flex; gap: 12px; align-items: center; }
+  .utility-bar a { color: #ffd0d0; text-decoration: none; }
+  .utility-bar a:hover { color: #fff; }
+
+  /* ERP Button */
+  .erp-btn {
+    background: var(--gold);
+    color: #fff !important;
+    padding: 5px 16px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background 0.2s;
+  }
+  .erp-btn:hover { background: var(--gold-light) !important; color: var(--text) !important; }
+  .erp-btn svg { width:14px; height:14px; }
+
+  /* Language Dropdown */
+  .lang-wrap { position: relative; }
+  .lang-select {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+  }
+  .lang-select option { color: var(--text); background: #fff; }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--white);
+    border-bottom: 3px solid var(--crimson);
+    position: sticky; top: 0; z-index: 200;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+  .header-inner {
+    max-width: 1300px; margin: auto;
+    padding: 12px 24px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .logo-area { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  .logo-img { width: 72px; height: 72px; object-fit: contain; }
+  .college-name h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--crimson-dark);
+    line-height: 1.2;
+  }
+  .college-name p { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+  .college-name span { color: var(--gold); font-weight: 600; }
+
+  /* Search Bar */
+  .search-wrap {
+    flex: 1; max-width: 380px;
+    display: flex; align-items: center;
+    background: var(--bg-light);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-left: auto;
+  }
+  .search-wrap:focus-within { border-color: var(--crimson); box-shadow: 0 0 0 3px rgba(176,28,36,0.10); }
+  .search-wrap input {
+    border: none; background: transparent; outline: none;
+    padding: 10px 14px; font-size: 14px; flex: 1;
+    font-family: inherit; color: var(--text);
+  }
+  .search-wrap button {
+    background: var(--crimson);
+    border: none; cursor: pointer;
+    padding: 10px 16px;
+    color: #fff; display: flex; align-items: center;
+    transition: background 0.2s;
+  }
+  .search-wrap button:hover { background: var(--crimson-dark); }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--crimson);
+    position: sticky; top: 98px; z-index: 190;
+  }
+  .nav-inner {
+    max-width: 1300px; margin: auto; padding: 0 24px;
+    display: flex; align-items: center; gap: 2px; flex-wrap: wrap;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-item > a {
+    display: block; padding: 13px 16px;
+    color: #fff; text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .nav-item > a:hover, .nav-item:hover > a { background: rgba(0,0,0,0.18); }
+  .nav-item > a::after { content: ' ▾'; font-size: 10px; opacity: 0.7; }
+  .nav-item > a.no-arrow::after { content: ''; }
+
+  .dropdown {
+    display: none;
+    position: absolute; top: 100%; left: 0;
+    background: #fff; min-width: 200px;
+    border-top: 3px solid var(--crimson);
+    box-shadow: var(--shadow-lg);
+    z-index: 300;
+  }
+  .nav-item:hover .dropdown { display: block; }
+  .dropdown a {
+    display: block; padding: 10px 18px;
+    font-size: 13.5px; color: var(--text); text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s, color 0.15s;
+  }
+  .dropdown a:hover { background: var(--bg-light); color: var(--crimson); }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    background: linear-gradient(135deg, #8a1219 0%, #b01c24 45%, #c9922a 100%);
+    color: #fff; padding: 48px 24px 36px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-inner {
+    max-width: 1300px; margin: auto;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 32px; align-items: center; position: relative;
+  }
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700;
+    line-height: 1.25; margin-bottom: 12px;
+  }
+  .hero p { font-size: 16px; opacity: 0.9; max-width: 540px; line-height: 1.6; }
+  .hero-badges { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 500;
+  }
+  .hero-stat-box {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px; padding: 24px 28px;
+    text-align: center; backdrop-filter: blur(8px);
+    min-width: 200px;
+  }
+  .hero-stat-box .big { font-size: 48px; font-weight: 700; color: var(--gold-light); line-height: 1; }
+  .hero-stat-box .label { font-size: 14px; opacity: 0.9; margin-top: 6px; }
+
+  /* ── PLACEMENT HIGHLIGHT ── */
+  .placement-strip {
+    background: linear-gradient(90deg, var(--gold) 0%, #e8a820 100%);
+    padding: 0;
+    overflow: hidden;
+  }
+  .placement-inner {
+    max-width: 1300px; margin: auto;
+    padding: 0 24px;
+    display: grid; grid-template-columns: auto 1fr;
+    align-items: stretch;
+  }
+  .placement-label {
+    background: var(--crimson-dark);
+    color: #fff; font-weight: 700;
+    padding: 0 28px;
+    display: flex; align-items: center;
+    font-size: 13px; letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .placement-stats {
+    display: flex; gap: 0; overflow-x: auto; padding: 0;
+  }
+  .pstat {
+    padding: 16px 28px;
+    border-right: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; gap: 12px;
+    white-space: nowrap;
+  }
+  .pstat:last-child { border-right: none; }
+  .pstat-num { font-size: 26px; font-weight: 700; color: #fff; }
+  .pstat-desc { font-size: 12px; color: rgba(255,255,255,0.9); line-height: 1.3; max-width: 90px; }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: #1a1a2e;
+    color: #fff; padding: 8px 0;
+    display: flex; align-items: center; overflow: hidden;
+  }
+  .ticker-label {
+    background: var(--crimson);
+    color: #fff; padding: 0 16px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    white-space: nowrap; height: 100%;
+    display: flex; align-items: center;
+    min-width: 120px; justify-content: center;
+  }
+  .ticker-track { flex: 1; overflow: hidden; position: relative; }
+  .ticker-content {
+    display: inline-flex; gap: 48px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+    font-size: 13px; color: #ccc;
+    padding: 0 32px;
+  }
+  .ticker-content span { color: var(--gold-light); font-weight: 500; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── MAIN CONTENT ── */
+  .main { max-width: 1300px; margin: auto; padding: 32px 24px; }
+
+  /* Section Heading */
+  .sec-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 24px;
+  }
+  .sec-head h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--crimson-dark);
+  }
+  .sec-head .line { flex: 1; height: 2px; background: linear-gradient(90deg, var(--crimson), transparent); }
+  .sec-head .all-link {
+    font-size: 13px; color: var(--crimson);
+    text-decoration: none; font-weight: 600;
+    border: 1.5px solid var(--crimson); border-radius: 4px; padding: 4px 12px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .sec-head .all-link:hover { background: var(--crimson); color: #fff; }
+
+  /* ── STATS GRID ── */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-bottom: 36px;
+  }
+  .stat-card {
+    background: var(--white);
+    border-radius: 10px; padding: 20px;
+    text-align: center; border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .stat-icon { font-size: 28px; margin-bottom: 8px; }
+  .stat-num {
+    font-size: 32px; font-weight: 700;
+    color: var(--crimson); font-family: 'Playfair Display', serif;
+  }
+  .stat-desc { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+
+  /* ── PLACEMENT SECTION ── */
+  .placement-section {
+    background: linear-gradient(135deg, #fff9f0 0%, #fff3e8 100%);
+    border: 2px solid var(--gold);
+    border-radius: 16px; padding: 28px;
+    margin-bottom: 36px;
+    position: relative; overflow: hidden;
+  }
+  .placement-section::before {
+    content: '🏆';
+    position: absolute; right: 24px; top: 20px;
+    font-size: 64px; opacity: 0.12;
+  }
+  .placement-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 16px; margin-top: 20px;
+  }
+  .pcol {
+    background: #fff; border-radius: 10px; padding: 16px;
+    text-align: center; border: 1px solid #f0e0c0;
+    transition: transform 0.2s;
+  }
+  .pcol:hover { transform: translateY(-2px); }
+  .pcol .pnum { font-size: 28px; font-weight: 700; color: var(--crimson); }
+  .pcol .pdesc { font-size: 12px; color: var(--text-light); margin-top: 4px; line-height: 1.3; }
+  .pcol .pyear { font-size: 11px; color: var(--gold); font-weight: 600; margin-top: 4px; }
+  .top-recruiters { margin-top: 20px; }
+  .top-recruiters h4 { font-size: 14px; font-weight: 600; color: var(--text-light); margin-bottom: 10px; }
+  .recruiters-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .recruiter-tag {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 12.5px; color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ── TWO COL LAYOUT ── */
+  .two-col {
+    display: grid; grid-template-columns: 2fr 1fr;
+    gap: 28px; margin-bottom: 36px;
+  }
+
+  /* News Cards */
+  .news-list { display: flex; flex-direction: column; gap: 12px; }
+  .news-card {
+    background: var(--white); border-radius: 10px;
+    padding: 16px; border: 1px solid var(--border);
+    display: flex; gap: 14px; align-items: flex-start;
+    transition: box-shadow 0.2s;
+    text-decoration: none; color: inherit;
+  }
+  .news-card:hover { box-shadow: var(--shadow); }
+  .news-date {
+    background: var(--crimson);
+    color: #fff; text-align: center;
+    border-radius: 8px; padding: 8px 10px;
+    min-width: 48px;
+  }
+  .news-date .dd { font-size: 20px; font-weight: 700; line-height: 1; }
+  .news-date .mm { font-size: 11px; text-transform: uppercase; }
+  .news-body h4 { font-size: 14.5px; font-weight: 600; color: var(--text); line-height: 1.4; }
+  .news-body p { font-size: 12.5px; color: var(--text-light); margin-top: 4px; }
+  .news-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 3px;
+    font-size: 11px; font-weight: 600; margin-top: 6px;
+  }
+  .tag-event { background: #e8f4ff; color: #0066aa; }
+  .tag-award { background: #fff3e0; color: #b05a00; }
+  .tag-notice { background: #f0ffe8; color: #2a7a00; }
+  .tag-placement { background: #fff0f0; color: var(--crimson); }
+
+  /* Notices */
+  .notice-list { display: flex; flex-direction: column; gap: 8px; }
+  .notice-item {
+    background: var(--white); border-radius: 8px;
+    padding: 12px 14px; border: 1px solid var(--border);
+    border-left: 4px solid var(--crimson);
+    font-size: 13px; color: var(--text);
+    cursor: pointer; transition: background 0.15s;
+    text-decoration: none; display: block;
+  }
+  .notice-item:hover { background: var(--bg-light); }
+  .notice-item .ndate { font-size: 11px; color: var(--text-light); margin-top: 4px; }
+  .notice-new {
+    background: var(--crimson); color: #fff;
+    font-size: 10px; padding: 2px 6px; border-radius: 2px;
+    font-weight: 700; margin-left: 6px; vertical-align: middle;
+  }
+
+  /* ── DEPARTMENTS ── */
+  .dept-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-bottom: 36px;
+  }
+  .dept-card {
+    background: var(--white); border-radius: 10px;
+    padding: 20px 16px; text-align: center;
+    border: 1px solid var(--border); border-top: 4px solid var(--crimson);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer; text-decoration: none; color: inherit;
+  }
+  .dept-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-top-color: var(--gold); }
+  .dept-icon { font-size: 32px; margin-bottom: 10px; }
+  .dept-name { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .dept-meta { font-size: 12px; color: var(--text-light); margin-top: 6px; }
+
+  /* ── QUICK LINKS ── */
+  .qlinks-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 12px; margin-bottom: 36px;
+  }
+  .qlink {
+    background: var(--white); border-radius: 10px;
+    padding: 16px 12px; text-align: center;
+    border: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+    transition: all 0.2s;
+    font-size: 12.5px; font-weight: 500;
+  }
+  .qlink:hover { background: var(--crimson); color: #fff; transform: translateY(-2px); }
+  .qlink-icon { font-size: 26px; margin-bottom: 8px; }
+
+  /* ── EVENTS ── */
+  .events-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-bottom: 36px;
+  }
+  .event-card {
+    background: var(--white); border-radius: 10px;
+    border: 1px solid var(--border); overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .event-card:hover { box-shadow: var(--shadow-lg); }
+  .event-top {
+    background: linear-gradient(135deg, var(--crimson), var(--crimson-dark));
+    color: #fff; padding: 20px 20px 16px;
+  }
+  .event-top .edate { font-size: 13px; opacity: 0.85; }
+  .event-top h4 { font-size: 16px; font-weight: 600; margin-top: 4px; line-height: 1.3; }
+  .event-body { padding: 16px; }
+  .event-body p { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .event-body .venue { font-size: 12px; color: var(--gold); font-weight: 600; margin-top: 8px; }
+
+  /* ── GALLERY ROW ── */
+  .gallery-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 12px; margin-bottom: 36px;
+  }
+  .gallery-item {
+    background: var(--crimson);
+    border-radius: 10px; aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; color: rgba(255,255,255,0.6);
+    overflow: hidden; cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+  }
+  .gallery-item:hover { transform: scale(1.04); }
+  .gallery-item .goverlay {
+    position: absolute; inset: 0;
+    background: rgba(176,28,36,0.7);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.2s;
+    color: #fff; font-size: 13px; font-weight: 600;
+    text-align: center; padding: 12px;
+  }
+  .gallery-item:hover .goverlay { opacity: 1; }
+  .gi1 { background: linear-gradient(135deg,#8a1219,#c04040); }
+  .gi2 { background: linear-gradient(135deg,#1a3a6a,#2a5a9a); }
+  .gi3 { background: linear-gradient(135deg,#1a6a2a,#2a9a3a); }
+  .gi4 { background: linear-gradient(135deg,#6a4a1a,#9a7a2a); }
+  .gi5 { background: linear-gradient(135deg,#4a1a6a,#7a2a9a); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #12121e;
+    color: #ccc;
+  }
+  .footer-top {
+    max-width: 1300px; margin: auto;
+    padding: 40px 24px 24px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  .footer-brand { }
+  .footer-brand .fblogo {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .footer-brand h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; color: #fff; line-height: 1.3;
+  }
+  .footer-brand p { font-size: 13px; color: #999; line-height: 1.7; }
+  .footer-col h4 {
+    color: #fff; font-size: 15px;
+    font-weight: 600; margin-bottom: 14px;
+    border-bottom: 2px solid var(--crimson);
+    padding-bottom: 8px;
+  }
+  .footer-col a {
+    display: block; color: #aaa; text-decoration: none;
+    font-size: 13px; margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold-light); }
+  .footer-contact { font-size: 13px; color: #999; line-height: 1.8; margin-top: 4px; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    max-width: 1300px; margin: auto;
+    padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: #666; flex-wrap: wrap; gap: 8px;
+  }
+  .social-links { display: flex; gap: 10px; }
+  .social-links a {
+    background: rgba(255,255,255,0.08);
+    color: #ccc; padding: 7px 12px; border-radius: 6px;
+    font-size: 13px; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .social-links a:hover { background: var(--crimson); color: #fff; }
+
+  /* ── ACCREDITATION ── */
+  .accred-bar {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 3px solid var(--crimson);
+    padding: 14px 24px;
+  }
+  .accred-inner {
+    max-width: 1300px; margin: auto;
+    display: flex; align-items: center; justify-content: center;
+    gap: 40px; flex-wrap: wrap;
+  }
+  .accred-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--text-light);
+  }
+  .accred-badge {
+    background: var(--crimson);
+    color: #fff; font-weight: 700;
+    padding: 4px 10px; border-radius: 4px; font-size: 13px;
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonials {
+    background: var(--white);
+    border-radius: 12px; padding: 28px;
+    border: 1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .testimonial-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px;
+  }
+  .testimonial-card {
+    background: var(--bg-light); border-radius: 10px; padding: 20px;
+    border-left: 4px solid var(--gold);
+  }
+  .testimonial-card p { font-size: 13.5px; color: var(--text); line-height: 1.6; font-style: italic; }
+  .testimonial-author { margin-top: 12px; }
+  .testimonial-author strong { font-size: 14px; color: var(--crimson-dark); }
+  .testimonial-author span { display: block; font-size: 12px; color: var(--text-light); }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .stats-grid, .dept-grid { grid-template-columns: repeat(2, 1fr); }
+    .placement-grid { grid-template-columns: repeat(3, 1fr); }
+    .qlinks-grid { grid-template-columns: repeat(3, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-row { grid-template-columns: repeat(3, 1fr); }
+    .events-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .header-inner { flex-wrap: wrap; }
+    .search-wrap { max-width: 100%; width: 100%; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-stat-box { display: none; }
+    .stats-grid, .placement-grid, .dept-grid, .qlinks-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr; }
+    .testimonial-grid, .events-grid, .gallery-row { grid-template-columns: 1fr; }
+    .college-name h1 { font-size: 17px; }
+    nav .nav-inner { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- UTILITY BAR -->
+<div class="utility-bar">
+  <div class="utility-inner">
+    <div class="utility-left">
+      <span>📍 Sangli, Maharashtra – 416 415</span>
+      <a href="tel:02332690823">📞 0233-2690823</a>
+      <a href="mailto:principal@walchandsangli.ac.in">✉ principal@walchandsangli.ac.in</a>
+    </div>
+    <div class="utility-right">
+      <a href="#" class="erp-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        ERP Login
+      </a>
+      <div class="lang-wrap">
+        <select class="lang-select" onchange="changeLang(this.value)">
+          <option value="en">🌐 English</option>
+          <option value="mr">मराठी</option>
+          <option value="hi">हिंदी</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a class="logo-area" href="#">
+      <img class="logo-img" src="/mnt/user-data/uploads/1775446827058_image.png" alt="WCE Logo" onerror="this.style.display='none'"/>
+      <div class="college-name">
+        <h1>Walchand College of Engineering</h1>
+        <p>Sangli, Maharashtra &nbsp;|&nbsp; <span>Estd. 1947</span> &nbsp;|&nbsp; Autonomous Institute</p>
+      </div>
+    </a>
+    <div class="search-wrap">
+      <input type="text" placeholder="Search departments, faculty, courses…" id="searchInput" onkeydown="handleSearch(event)"/>
+      <button onclick="doSearch()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-item"><a href="#" class="no-arrow">🏠 Home</a></div>
+    <div class="nav-item">
+      <a href="#">About</a>
+      <div class="dropdown">
+        <a href="#">Vision & Mission</a>
+        <a href="#">History</a>
+        <a href="#">Administration</a>
+        <a href="#">Governing Board</a>
+        <a href="#">IQAC</a>
+        <a href="#">NIRF Report</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="#">Academics</a>
+      <div class="dropdown">
+        <a href="#">UG Programs (B.E.)</a>
+        <a href="#">PG Programs (M.E./M.Tech)</a>
+        <a href="#">Ph.D. Programs</a>
+        <a href="#">Departments</a>
+        <a href="#">Academic Calendar</a>
+        <a href="#">Examinations</a>
+        <a href="#">Syllabus</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="#">Admissions</a>
+      <div class="dropdown">
+        <a href="#">Admission Process</a>
+        <a href="#">Eligibility Criteria</a>
+        <a href="#">Fee Structure</a>
+        <a href="#">Scholarships</a>
+        <a href="#">Apply Online</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="#">Research</a>
+      <div class="dropdown">
+        <a href="#">Research Centers</a>
+        <a href="#">Publications</a>
+        <a href="#">Projects & Grants</a>
+        <a href="#">Patents</a>
+        <a href="#">Ph.D. Awarded</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="#">Placements</a>
+      <div class="dropdown">
+        <a href="#">Placement Statistics</a>
+        <a href="#">Top Recruiters</a>
+        <a href="#">Training & Placement Cell</a>
+        <a href="#">Alumni Network</a>
+        <a href="#">Internships</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="#">Student Life</a>
+      <div class="dropdown">
+        <a href="#">Clubs & Societies</a>
+        <a href="#">Sports</a>
+        <a href="#">Cultural Events</a>
+        <a href="#">Hostel Facilities</a>
+        <a href="#">NSS / NCC</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="#">Facilities</a>
+      <div class="dropdown">
+        <a href="#">Library</a>
+        <a href="#">Laboratories</a>
+        <a href="#">Computing Center</a>
+        <a href="#">Cafeteria</a>
+        <a href="#">Medical Center</a>
+      </div>
+    </div>
+    <div class="nav-item"><a href="#" class="no-arrow">📞 Contact</a></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h2>Excellence in Engineering<br/>Education Since 1947</h2>
+      <p>One of Maharashtra's premier engineering institutions — shaping innovators, leaders, and changemakers for over 75 years.</p>
+      <div class="hero-badges">
+        <span class="badge">🏅 NAAC A+ Accredited</span>
+        <span class="badge">⭐ NBA Accredited</span>
+        <span class="badge">🎓 Autonomous Institute</span>
+        <span class="badge">🔬 9 Departments</span>
+      </div>
+    </div>
+    <div class="hero-stat-box">
+      <div class="big">95%</div>
+      <div class="label">Average Placement<br/>Rate 2024</div>
+      <div style="margin-top:16px; border-top:1px solid rgba(255,255,255,0.2); padding-top:14px;">
+        <div class="big" style="font-size:36px; color:#ffd080;">₹18 LPA</div>
+        <div class="label">Highest Package<br/>Offered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLACEMENT HIGHLIGHT STRIP -->
+<div class="placement-strip">
+  <div class="placement-inner">
+    <div class="placement-label">🏆 Placements 2024</div>
+    <div class="placement-stats">
+      <div class="pstat">
+        <div class="pstat-num">95%</div>
+        <div class="pstat-desc">Placement Rate</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">450+</div>
+        <div class="pstat-desc">Students Placed</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">₹18 L</div>
+        <div class="pstat-desc">Highest CTC</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">₹7.2 L</div>
+        <div class="pstat-desc">Average CTC</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">120+</div>
+        <div class="pstat-desc">Recruiting Companies</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-label">📢 LATEST</div>
+  <div class="ticker-track">
+    <div class="ticker-content">
+      <span>Admissions Open 2025-26</span> — UG/PG Applications now accepted via CAP &nbsp;|&nbsp;
+      <span>Placement Drive</span> — TCS visiting campus on April 15, 2025 &nbsp;|&nbsp;
+      <span>Tech Fest "Walchandkar"</span> — April 25-27, 2025 &nbsp;|&nbsp;
+      <span>NAAC Re-accreditation</span> — Peer team visit scheduled for May 2025 &nbsp;|&nbsp;
+      <span>Ph.D. Admissions</span> — Applications open for 2025 batch &nbsp;|&nbsp;
+      <!-- repeat for seamless loop -->
+      <span>Admissions Open 2025-26</span> — UG/PG Applications now accepted via CAP &nbsp;|&nbsp;
+      <span>Placement Drive</span> — TCS visiting campus on April 15, 2025 &nbsp;|&nbsp;
+      <span>Tech Fest "Walchandkar"</span> — April 25-27, 2025 &nbsp;|&nbsp;
+      <span>NAAC Re-accreditation</span> — Peer team visit scheduled for May 2025 &nbsp;|&nbsp;
+      <span>Ph.D. Admissions</span> — Applications open for 2025 batch
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">👨‍🎓</div>
+      <div class="stat-num">4,200+</div>
+      <div class="stat-desc">Students Enrolled</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">👩‍🏫</div>
+      <div class="stat-num">180+</div>
+      <div class="stat-desc">Faculty Members</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🔬</div>
+      <div class="stat-num">45+</div>
+      <div class="stat-desc">Research Labs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🏅</div>
+      <div class="stat-num">75+</div>
+      <div class="stat-desc">Years of Excellence</div>
+    </div>
+  </div>
+
+  <!-- PLACEMENTS DETAIL -->
+  <div class="placement-section">
+    <div class="sec-head">
+      <h3>🏆 Placement Highlights 2023-24</h3>
+      <div class="line"></div>
+      <a href="#" class="all-link">View Full Report →</a>
+    </div>
+    <div class="placement-grid">
+      <div class="pcol">
+        <div class="pnum">95%</div>
+        <div class="pdesc">Overall Placement Rate</div>
+        <div class="pyear">2023-24</div>
+      </div>
+      <div class="pcol">
+        <div class="pnum">₹18L</div>
+        <div class="pdesc">Highest Package (CTC)</div>
+        <div class="pyear">2023-24</div>
+      </div>
+      <div class="pcol">
+        <div class="pnum">₹7.2L</div>
+        <div class="pdesc">Average Package (CTC)</div>
+        <div class="pyear">2023-24</div>
+      </div>
+      <div class="pcol">
+        <div class="pnum">450+</div>
+        <div class="pdesc">Students Placed</div>
+        <div class="pyear">2023-24</div>
+      </div>
+      <div class="pcol">
+        <div class="pnum">120+</div>
+        <div class="pdesc">Recruiters Visited</div>
+        <div class="pyear">2023-24</div>
+      </div>
+    </div>
+    <div class="top-recruiters">
+      <h4>Top Recruiting Companies:</h4>
+      <div class="recruiters-list">
+        <span class="recruiter-tag">TCS</span>
+        <span class="recruiter-tag">Infosys</span>
+        <span class="recruiter-tag">Wipro</span>
+        <span class="recruiter-tag">Cognizant</span>
+        <span class="recruiter-tag">L&T Technology</span>
+        <span class="recruiter-tag">Persistent Systems</span>
+        <span class="recruiter-tag">Zensar</span>
+        <span class="recruiter-tag">Kirloskar</span>
+        <span class="recruiter-tag">KPIT</span>
+        <span class="recruiter-tag">Honeywell</span>
+        <span class="recruiter-tag">Cummins</span>
+        <span class="recruiter-tag">Siemens</span>
+        <span class="recruiter-tag">Emerson</span>
+        <span class="recruiter-tag">Amazon</span>
+        <span class="recruiter-tag">Capgemini</span>
+        <span class="recruiter-tag">Forbes Marshall</span>
+        <span class="recruiter-tag">Bharat Forge</span>
+        <span class="recruiter-tag">+ 100 more</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <div class="sec-head"><h3>⚡ Quick Access</h3><div class="line"></div></div>
+  <div class="qlinks-grid">
+    <a href="#" class="qlink"><div class="qlink-icon">🖥</div>ERP Login</a>
+    <a href="#" class="qlink"><div class="qlink-icon">📋</div>Exam Results</a>
+    <a href="#" class="qlink"><div class="qlink-icon">📅</div>Time Table</a>
+    <a href="#" class="qlink"><div class="qlink-icon">📚</div>Library</a>
+    <a href="#" class="qlink"><div class="qlink-icon">🏢</div>Hostel</a>
+    <a href="#" class="qlink"><div class="qlink-icon">📝</div>Apply Now</a>
+  </div>
+
+  <!-- NEWS + NOTICES -->
+  <div class="two-col">
+    <div>
+      <div class="sec-head">
+        <h3>📰 News & Events</h3>
+        <div class="line"></div>
+        <a href="#" class="all-link">All News →</a>
+      </div>
+      <div class="news-list">
+        <a href="#" class="news-card">
+          <div class="news-date"><div class="dd">10</div><div class="mm">Apr</div></div>
+          <div class="news-body">
+            <h4>WCE Students Win National Robotics Championship 2025</h4>
+            <p>Team from Electronics Department clinches first place at IIT Bombay's TechFest robotics event.</p>
+            <span class="news-tag tag-award">🏆 Award</span>
+          </div>
+        </a>
+        <a href="#" class="news-card">
+          <div class="news-date"><div class="dd">05</div><div class="mm">Apr</div></div>
+          <div class="news-body">
+            <h4>Campus Placement Drive — TCS, Infosys Visit April 15-20</h4>
+            <p>Final year students are invited to register for the upcoming on-campus hiring event.</p>
+            <span class="news-tag tag-placement">💼 Placement</span>
+          </div>
+        </a>
+        <a href="#" class="news-card">
+          <div class="news-date"><div class="dd">28</div><div class="mm">Mar</div></div>
+          <div class="news-body">
+            <h4>Annual Tech Fest "Walchandkar" — April 25–27, 2025</h4>
+            <p>Register for 30+ technical and cultural events. Guest lectures by industry leaders.</p>
+            <span class="news-tag tag-event">🎉 Event</span>
+          </div>
+        </a>
+        <a href="#" class="news-card">
+          <div class="news-date"><div class="dd">20</div><div class="mm">Mar</div></div>
+          <div class="news-body">
+            <h4>New Research Grant Awarded — ₹45 Lakhs from DST-SERB</h4>
+            <p>Civil Engineering Department receives major funding for structural health monitoring research project.</p>
+            <span class="news-tag tag-award">🔬 Research</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="sec-head">
+        <h3>📌 Notices</h3>
+        <div class="line"></div>
+        <a href="#" class="all-link">All →</a>
+      </div>
+      <div class="notice-list">
+        <a href="#" class="notice-item">Exam Form Submission Deadline — April 20, 2025<span class="notice-new">NEW</span><div class="ndate">Posted: Apr 8, 2025</div></a>
+        <a href="#" class="notice-item">Fee Payment Portal Open for 2025-26<span class="notice-new">NEW</span><div class="ndate">Posted: Apr 5, 2025</div></a>
+        <a href="#" class="notice-item">CAP Round 1 Merit List Published<div class="ndate">Posted: Apr 1, 2025</div></a>
+        <a href="#" class="notice-item">Ph.D. Entrance Test Schedule 2025<div class="ndate">Posted: Mar 28, 2025</div></a>
+        <a href="#" class="notice-item">Anti-Ragging Undertaking Submission<div class="ndate">Posted: Mar 25, 2025</div></a>
+        <a href="#" class="notice-item">Library Membership Form 2025-26<div class="ndate">Posted: Mar 22, 2025</div></a>
+        <a href="#" class="notice-item">Hostel Allotment List — AY 2025-26<div class="ndate">Posted: Mar 18, 2025</div></a>
+        <a href="#" class="notice-item">IQAC Meeting Minutes February 2025<div class="ndate">Posted: Mar 10, 2025</div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEPARTMENTS -->
+  <div class="sec-head">
+    <h3>🎓 Departments</h3>
+    <div class="line"></div>
+    <a href="#" class="all-link">All Departments →</a>
+  </div>
+  <div class="dept-grid">
+    <a href="#" class="dept-card">
+      <div class="dept-icon">💻</div>
+      <div class="dept-name">Computer Science & Engineering</div>
+      <div class="dept-meta">B.E. / M.Tech / Ph.D.</div>
+    </a>
+    <a href="#" class="dept-card">
+      <div class="dept-icon">⚡</div>
+      <div class="dept-name">Electronics & Telecommunication</div>
+      <div class="dept-meta">B.E. / M.E. / Ph.D.</div>
+    </a>
+    <a href="#" class="dept-card">
+      <div class="dept-icon">⚙️</div>
+      <div class="dept-name">Mechanical Engineering</div>
+      <div class="dept-meta">B.E. / M.E. / Ph.D.</div>
+    </a>
+    <a href="#" class="dept-card">
+      <div class="dept-icon">🏗️</div>
+      <div class="dept-name">Civil Engineering</div>
+      <div class="dept-meta">B.E. / M.E. / Ph.D.</div>
+    </a>
+    <a href="#" class="dept-card">
+      <div class="dept-icon">🔌</div>
+      <div class="dept-name">Electrical Engineering</div>
+      <div class="dept-meta">B.E. / M.E. / Ph.D.</div>
+    </a>
+    <a href="#" class="dept-card">
+      <div class="dept-icon">🏭</div>
+      <div class="dept-name">Production Engineering</div>
+      <div class="dept-meta">B.E. / M.E. / Ph.D.</div>
+    </a>
+    <a href="#" class="dept-card">
+      <div class="dept-icon">🧪</div>
+      <div class="dept-name">Chemical Technology</div>
+      <div class="dept-meta">B.E. / M.Tech / Ph.D.</div>
+    </a>
+    <a href="#" class="dept-card">
+      <div class="dept-icon">📐</div>
+      <div class="dept-name">Information Technology</div>
+      <div class="dept-meta">B.E. / M.Tech / Ph.D.</div>
+    </a>
+  </div>
+
+  <!-- UPCOMING EVENTS -->
+  <div class="sec-head">
+    <h3>📅 Upcoming Events</h3>
+    <div class="line"></div>
+    <a href="#" class="all-link">All Events →</a>
+  </div>
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-top">
+        <div class="edate">April 15–20, 2025</div>
+        <h4>Campus Placement Drive — IT & Core Companies</h4>
+      </div>
+      <div class="event-body">
+        <p>TCS, Infosys, KPIT, Persistent Systems and 15 more companies visiting for final year students.</p>
+        <div class="venue">📍 Placement Cell, Admin Block</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-top">
+        <div class="edate">April 25–27, 2025</div>
+        <h4>Walchandkar Tech & Cultural Fest 2025</h4>
+      </div>
+      <div class="event-body">
+        <p>Annual flagship event with 30+ competitions, guest lectures, workshops, and cultural performances.</p>
+        <div class="venue">📍 Main Campus, Sangli</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-top">
+        <div class="edate">May 5, 2025</div>
+        <h4>Ph.D. Entrance Exam 2025-26</h4>
+      </div>
+      <div class="event-body">
+        <p>Entrance examination for all departments. Admit cards available on ERP portal from April 28.</p>
+        <div class="venue">📍 Examination Hall, WCE Campus</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO GALLERY -->
+  <div class="sec-head">
+    <h3>📸 Campus Gallery</h3>
+    <div class="line"></div>
+    <a href="#" class="all-link">View All →</a>
+  </div>
+  <div class="gallery-row">
+    <div class="gallery-item gi1">🏫<div class="goverlay">Main Building</div></div>
+    <div class="gallery-item gi2">🔬<div class="goverlay">Research Labs</div></div>
+    <div class="gallery-item gi3">🎉<div class="goverlay">Convocation 2024</div></div>
+    <div class="gallery-item gi4">⚙️<div class="goverlay">Workshop</div></div>
+    <div class="gallery-item gi5">🏆<div class="goverlay">Award Ceremony</div></div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials">
+    <div class="sec-head"><h3>💬 Alumni Speak</h3><div class="line"></div><a href="#" class="all-link">More Stories →</a></div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p>"WCE gave me a rock-solid foundation in engineering. The faculty's dedication and the culture of excellence helped me land a role at ISRO."</p>
+        <div class="testimonial-author">
+          <strong>Priya Deshmukh</strong>
+          <span>B.E. Mechanical, 2019 | Scientist, ISRO</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>"The industry exposure through the placement cell and the hands-on lab work made us job-ready from day one. Forever grateful to WCE."</p>
+        <div class="testimonial-author">
+          <strong>Rahul Patil</strong>
+          <span>B.E. CSE, 2021 | Software Engineer, Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>"Research facilities and guidance from Ph.D. supervisors at WCE are outstanding. Published 3 papers during my post-graduation."</p>
+        <div class="testimonial-author">
+          <strong>Snehal Kulkarni</strong>
+          <span>M.E. E&TC, 2022 | Research Engineer, L&T</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<!-- ACCREDITATION BAR -->
+<div class="accred-bar">
+  <div class="accred-inner">
+    <div class="accred-item"><span class="accred-badge">NAAC A+</span> Accredited</div>
+    <div class="accred-item"><span class="accred-badge">NBA</span> Accredited Programs</div>
+    <div class="accred-item"><span class="accred-badge">NIRF</span> Ranked Institute</div>
+    <div class="accred-item"><span class="accred-badge">AICTE</span> Approved</div>
+    <div class="accred-item"><span class="accred-badge">UGC</span> Recognised</div>
+    <div class="accred-item"><span class="accred-badge">ISO 9001</span> Certified</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="fblogo">
+        <img src="/mnt/user-data/uploads/1775446827058_image.png" style="width:52px;height:52px;object-fit:contain;filter:brightness(1.5);" onerror="this.style.display='none'"/>
+        <h3>Walchand College<br/>of Engineering, Sangli</h3>
+      </div>
+      <p>One of Maharashtra's oldest and most respected engineering institutions, committed to excellence in education, research, and innovation since 1947.</p>
+      <div class="social-links" style="margin-top:16px;">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#">About WCE</a>
+      <a href="#">Departments</a>
+      <a href="#">Admissions</a>
+      <a href="#">Placements</a>
+      <a href="#">Research</a>
+      <a href="#">Alumni</a>
+    </div>
+    <div class="footer-col">
+      <h4>Student Services</h4>
+      <a href="#">ERP Portal</a>
+      <a href="#">Exam Results</a>
+      <a href="#">Fee Payment</a>
+      <a href="#">Library Portal</a>
+      <a href="#">Hostel Portal</a>
+      <a href="#">Grievance Cell</a>
+      <a href="#">Anti-Ragging</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="footer-contact">
+        <strong style="color:#fff;">Walchand College of Engineering</strong><br/>
+        Vishrambag, Sangli<br/>
+        Maharashtra – 416 415<br/><br/>
+        📞 0233-2690823<br/>
+        📞 0233-2698143<br/>
+        ✉ principal@walchandsangli.ac.in<br/>
+        ✉ info@walchandsangli.ac.in
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Walchand College of Engineering, Sangli. All Rights Reserved.</span>
+    <span>Designed & Developed by WCE IT Department</span>
+  </div>
+</footer>
+
+<script>
+  // Language Switcher
+  const translations = {
+    en: {
+      'Excellence in Engineering': 'Excellence in Engineering',
+      lang: 'English'
+    },
+    mr: {
+      greet: 'वालचंद अभियांत्रिकी महाविद्यालय, सांगली',
+      lang: 'मराठी'
+    },
+    hi: {
+      greet: 'वालचंद इंजीनियरिंग कॉलेज, सांगली',
+      lang: 'हिंदी'
+    }
+  };
+
+  function changeLang(lang) {
+    const msg = {
+      en: 'Language set to English.',
+      mr: 'भाषा मराठीत बदलली. (Full translation would be applied on production build)',
+      hi: 'भाषा हिंदी में बदली गई। (Full translation would be applied on production build)'
+    };
+    if (lang !== 'en') {
+      const toast = document.createElement('div');
+      toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#1a1a2e;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.3);border-left:4px solid #c9922a;';
+      toast.textContent = msg[lang];
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3500);
+    }
+  }
+
+  // Search
+  function handleSearch(e) { if (e.key === 'Enter') doSearch(); }
+  function doSearch() {
+    const q = document.getElementById('searchInput').value.trim();
+    if (!q) return;
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#1a1a2e;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 24px rgba(0,0,0,0.3);border-left:4px solid #b01c24;';
+    toast.innerHTML = `🔍 Searching for: <strong>${q}</strong>`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
+  }
+
+  // Animate stat numbers on scroll
+  const counters = document.querySelectorAll('.stat-num, .pnum, .pstat-num');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animation = 'fadeUp 0.5s ease forwards';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  counters.forEach(c => observer.observe(c));
+</script>
+<style>
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</body>
+</html>
